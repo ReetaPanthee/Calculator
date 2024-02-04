@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/bf9fe3a3cb.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="output">
+        <input id="display" type="text" placeholder="0" />
+      </div>
+      <div class="buttons">
+        <div class="row">
+          <button onclick="factorial()">x!</button>
+          <button class="key">(</button>
+          <button class="key">)</button>
+          <button id="clear" onclick="returnBack()">DEL</button>
+          <button id="ac" onclick="calcScreen.value=''">AC</button>
+        </div>
+        <div class="row">
+          <button onclick="sin()">sin</button>
+          <button onclick="cos()">cos</button>
+          <button onclick="tan()">tan</button>
+          <button onclick="sqrt()">√</button>
+          <button onclick="pow()">
+            X<span style="position: relative; bottom: 5.8px; right: 1.1px"
+              >y</span
+            >
+          </button>
+          <button class="key">7</button>
+          <button class="key">8</button>
+          <button class="key">9</button>
+          <button onclick="pi()">π</button>
+          <button onclick="log()">log</button>
+        </div>
+        <div class="row">
+          <button class="key">4</button>
+          <button class="key">5</button>
+          <button class="key">6</button>
+          <button class="key">×</button>
+          <button class="key">÷</button>
+        </div>
+        <div class="row">
+          <button class="key">1</button>
+          <button class="key">2</button>
+          <button class="key">3</button>
+          <button class="key">+</button>
+          <button class="key">-</button>
+        </div>
+        <div class="row">
+          <button class="key">0</button>
+          <button class="key">.</button>
+          <button onclick="exp()">EXP</button>
+          <button class="key">%</button>
+          <button
+            id="evaluation"
+            onclick="calcScreen.value=eval(calcScreen.value);"
+          >
+            =
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var calcScreen = document.querySelector("#display");
+    var calcButton = document.querySelectorAll(".key");
+    for (button of calcButton) {
+      button.addEventListener("click", (fun) => {
+        btncontent = fun.target.innerText;
+        if (btncontent == "×") {
+          btncontent = "*";
+        }
+        if (btncontent == "÷") {
+          btncontent = "/";
+        }
+        calcScreen.value += btncontent;
+      });
+    }
+    function sin() {
+      calcScreen.value = Math.sin(calcScreen.value);
+    }
+    function cos() {
+      calcScreen.value = Math.cos(calcScreen.value);
+    }
+    function tan() {
+      calcScreen.value = Math.tan(calcScreen.value);
+    }
+    function pow() {
+      calcScreen.value = Math.pow(calcScreen.value, 2);
+    }
+    function sqrt() {
+      calcScreen.value = Math.sqrt(calcScreen.value, 2);
+    }
+    function log() {
+      calcScreen.value = Math.log(calcScreen.value);
+    }
+    function pi() {
+      calcScreen.value = 3.14159265358979;
+    }
+    function exp() {
+      calcScreen.value = 2.718;
+    }
+    function factorial() {
+      var num, i, f;
+      f = 1;
+      num = calcScreen.value;
+      for (i = 1; i <= num; i++) {
+        f = f * i;
+      }
+      i = i - 1;
+      calcScreen.value = f;
+    }
+    function returnBack() {
+      calcScreen.value = calcScreen.value.substr(
+        0,
+        calcScreen.value.length - 1
+      );
+    }
+  </script>
+</html>
